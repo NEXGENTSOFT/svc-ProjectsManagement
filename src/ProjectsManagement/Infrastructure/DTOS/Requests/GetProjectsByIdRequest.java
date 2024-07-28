@@ -3,9 +3,10 @@ package com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTO
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter @Setter
-public class CreateProjectsRequest {
-    private String name;
-    private String description;
-    private Long userId;
+public class GetProjectsByIdRequest {
+    private List<Long> data;
+    private String session_uuid;
 }

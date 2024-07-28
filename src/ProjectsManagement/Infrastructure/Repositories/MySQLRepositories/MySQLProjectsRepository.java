@@ -38,6 +38,19 @@ public class MySQLProjectsRepository implements ProjectsPort {
     }
 
     @Override
+    public BaseResponse getProjectsByIdList(List<Long> id){
+        try {
+            List<ProjectsModel> projects = repository.findAllById(id);
+            if (projects.isEmpty()) {
+                throw new NotFoundException("Project");
+            }
+            return from(projects, "Projects found successfully", true, HttpStatus.FOUND);
+        } catch (Exception e){
+            throw new NotFoundException("Project");
+        }
+    }
+
+    @Override
     public BaseResponse getProjectsByUuid(String uuid) {
         ProjectsModel projectsModel = repository.getProjectsByUuid(uuid);
         if (projectsModel == null) {
